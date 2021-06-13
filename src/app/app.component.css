@@ -1,0 +1,29 @@
+.menuRna{
+    background-color: black;
+}
+
+.texteRna{
+    color: white;
+}
+
+.activeRna{
+    background-color: #FBBD00;
+}
+
+.activeRna a:hover{
+    color: #3C3C3C
+}
+
+.activeTxtRna{
+    color: #3C3C3C;
+    font-weight: bold;
+}
+
+.nomUser{
+    color: #3C3C3C;
+    font-weight: bold
+}
+
+.espacement{
+    margin-right: 20px;
+}

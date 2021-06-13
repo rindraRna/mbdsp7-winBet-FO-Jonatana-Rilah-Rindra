@@ -1,0 +1,89 @@
+<h4><span class="jaune">Détails</span> du match</h4>
+<br/>
+<!-- Orders -->
+<div class="orders">
+    <div class="row">
+        <div class="col-xl-8">
+            <div class="card">
+                <div class="card-header">
+                    <strong class="card-title mb-3">{{ match.championnat.nom }}</strong>
+                </div>
+                <div class="card-body">
+                    <div class="align-center loader">
+                        <mat-spinner *ngIf="resourcesLoaded"></mat-spinner>
+                    </div> 
+                    <div class="mx-auto d-block">
+                        <h5 class="text-sm-center mt-2 mb-1">{{ match.equipe1.nom }} vs {{ match.equipe2.nom }}</h5>
+                        <div class="location text-sm-center"><i class="fa fa-map-marker"></i> {{ match.stade }}, {{ match.endroit }} - {{ match.date | date }} - {{ match.date | date: 'HH:mm' }}</div>
+                    </div>
+                    <hr/><hr/>
+                    <div class="card-text">
+                        <h6>{{titres[0]}}</h6>
+                        <div class="row">
+                            <div *ngFor="let parisVainqueur of parisVainqueurs" class="col-md-4">
+                                <button (click)="pari($event, 0)" type="button" class="btn btn-outline-secondary btnPari">{{ parisVainqueur.valeur }}
+                                    <span class="badge badge-light">{{ parisVainqueur.cote }}</span>
+                                </button>
+                            </div>
+                        </div>
+                        <hr/>
+                        <h6>{{titres[1]}}</h6>
+                        <div class="row">
+                            <div *ngFor="let parisMarque of parisMarques" class="col-md-6">
+                                <button (click)="pari($event, 1)" type="button" class="btn btn-outline-secondary btnPari">{{ parisMarque.valeur }}
+                                    <span class="badge badge-light">{{ parisMarque.cote }}</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>  <!-- /.col-lg-8 -->
+
+        <div class="col-xl-4">
+            <div class="row">
+                <div class="col-lg-6 col-xl-12">
+                    <div class="card bg-flat-color-3">
+                        <div class="card-header">
+                            <strong class="card-title">Vos paris</strong>
+                        </div>
+                        <div class="card-body" >
+                            <div *ngFor="let produit of produits">
+                                <p><strong>{{produit.match.equipe1.nom}}  vs {{produit.match.equipe2.nom}}</strong></p>
+                                <p><strong>{{produit.type.nom}}: </strong> {{produit.valeur}}</p>
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <p><strong>Cote: </strong><br/>{{produit.cote}}</p>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <p>
+                                            <input (change)="calculGain($event, produit)" (keyup)="calculGain($event, produit)" type="number" class="form-control inputPari" value="200"/>
+                                        </p>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <p><strong>Gains:</strong><br/> {{produit.gain}}</p>
+                                    </div>
+                                </div>
+                                <hr/>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <strong>Mise total:</strong><br/>{{miseTotalValeur}}
+                                </div>
+                                <div class="col-md-6">
+                                    <strong>Gain potentiel:</strong><br/>{{gainPotentielValeur}}
+                                </div>
+                            </div>
+                        </div>
+                        <button (click)="enregistrerDansPanier()" type="button" class="btn btn-outline-secondary btnPari2">
+                            Parier
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div> <!-- /.col-md-4 -->
+    </div>
+</div>
+<!-- /.orders -->

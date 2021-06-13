@@ -1,0 +1,111 @@
+<!-- caroussel debut -->
+<mat-carousel
+  timings="200ms ease-in"
+  [autoplay]="true"
+  interval="5000"
+  color="black"
+  maxWidth="auto"
+  proportion="25"
+  slides="3"
+  [loop]="true"
+  [hideArrows]="false"
+  [hideIndicators]="false"
+  [useKeyboard]="true"
+  [useMouseWheel]="false"
+  orientation="ltr"
+>
+  <mat-carousel-slide
+    #matCarouselSlide
+    *ngFor="let slide of slides; let i = index"
+    [image]="slide.image"
+    overlayColor="#00000040"
+    [hideOverlay]="false"
+  ></mat-carousel-slide>
+</mat-carousel>
+<!-- caroussel fin -->
+<br/>
+<h4><span class="jaune">Liste</span> des matchs</h4>
+<br/>
+<!-- Orders -->
+<div class="orders">
+    <div class="row">
+        <div class="col-xl-8">
+            <div class="align-center loader">
+                <mat-spinner *ngIf="resourcesLoaded"></mat-spinner>
+            </div> 
+            <section *ngFor="let match of matchs">
+                <mat-card>
+                    <div class="floatRight">
+                        <div  class="with-icon">
+                            <mat-icon>calendar_today</mat-icon><span class="espacement">{{ match.date  | date}}</span>
+                        </div>
+                        <div  class="with-icon">
+                            <mat-icon>access_time</mat-icon><span class="espacement">{{ match.date | date: 'HH:mm'}}</span>
+                            <!-- <mat-icon>access_time</mat-icon><span class="espacement">{{ match.date | date: 'HH:mm zzzz'}}</span> -->
+                        </div>
+                    </div>
+                    <div>
+                        <mat-card-title class="titreCard">{{ match.equipe1.nom }} vs {{ match.equipe2.nom }}</mat-card-title>
+                        <mat-card-subtitle class="jaune">{{ match.championnat.nom }}</mat-card-subtitle>
+                    </div>
+                    <a routerLink="/details/{{ match._id }}">
+                        <button class="btn btn-secondary btn-sm btnRna">Parier</button>
+                    </a>
+                </mat-card>
+                <hr/>
+            </section>
+        </div>
+
+        <div class="col-xl-4">
+            <div class="row">
+                <div class="col-lg-6 col-xl-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <strong class="card-title">Les meilleurs équipes</strong>
+                        </div>
+                        <div class="card-body">
+                            <table class="table">
+                                <thead class="thead-dark">
+                                    <tr>
+                                      <th scope="col">#</th>
+                                      <th scope="col">Equipe</th>
+                                      <th scope="col">Points</th>
+                                  </tr>
+                              </thead>
+                              <tbody>
+                                <tr>
+                                    <th scope="row">1</th>
+                                    <td>Mark</td>
+                                    <td>Otto</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">2</th>
+                                    <td>Jacob</td>
+                                    <td>Thornton</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">3</th>
+                                    <td>Larry</td>
+                                    <td>the Bird</td>
+                                </tr>
+                              </tbody>
+                            </table>
+                        </div>    
+                    </div>
+                </div>
+
+                <div class="col-lg-6 col-xl-12">
+                    <div class="card bg-flat-color-3  ">
+                        <div class="card-body">
+                            <h4 class="card-title m-0  white-color ">August 2018</h4>
+                        </div>
+                         <div class="card-body">
+                             <div id="flotLine5" class="flot-line"></div>
+                         </div>
+                    </div>
+                </div>
+            </div>
+        </div> <!-- /.col-md-4 -->
+    </div>
+</div>
+<!-- /.orders -->

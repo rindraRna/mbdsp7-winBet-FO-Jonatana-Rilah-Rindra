@@ -1,0 +1,30 @@
+.minuscule{
+    text-transform: lowercase;
+}
+
+.btnJaune{
+    background-color: #FBBD00;
+    color: white;
+}
+
+.btnJaune:hover{
+    background-color: #3C3C3C;
+    color: white;
+}
+
+.btnNoir{
+    background-color: #3C3C3C;
+    color: white;
+}
+
+.jaune{
+    color: #FBBD00;
+}
+
+.align-center{
+    margin-left: 43%;
+}
+
+.loader ::ng-deep .mat-progress-spinner circle, .mat-spinner circle {
+    stroke: #FBBD00;
+}

@@ -1,0 +1,43 @@
+.jaune{
+    color: #FBBD00;
+}
+
+.jauneBold{
+    color: #FBBD00;
+    font-weight: bold;
+}
+
+.titreCard{
+    font-size: 16px;
+}
+
+.floatRight{
+    float: right;
+}
+
+.with-icon {
+    display: flex;
+    align-items: center;
+}
+
+.espacement{
+    margin-left: 8px;
+}
+
+.btnRna{
+    width: 100%;
+    background-color: black;
+}
+
+.btnRna:hover{
+    background-color: #FBBD00;
+    color: black;
+}
+
+.align-center{
+    margin-left: 43%;
+}
+
+.loader ::ng-deep .mat-progress-spinner circle, .mat-spinner circle {
+    stroke: #FBBD00;
+}
