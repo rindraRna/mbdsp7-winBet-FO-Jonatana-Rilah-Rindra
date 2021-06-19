@@ -25,6 +25,8 @@ export class PanierService {
   }
 
   modifier(panier: Panier):Observable<any> {
+    console.log("PANIER SERVICE - panier.gainTotal: "+panier.gainTotal);
+    console.log("PANIER SERVICE - panier.miseTotal: "+panier.miseTotal);
     return this.http.put(this.uri+"s", panier);
   }
 
@@ -65,7 +67,6 @@ export class PanierService {
 
   supprimerProduit(produit){
     let index = this.produits.indexOf(produit);
-    console.log("index: "+index);
     this.produits.splice(index, 1);
   }
 }

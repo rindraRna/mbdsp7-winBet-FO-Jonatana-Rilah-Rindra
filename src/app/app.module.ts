@@ -25,6 +25,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { RechercheComponent } from './recherche/recherche.component';
 import { QRCodeModule } from 'angular2-qrcode';
 import { DetailsPanierComponent } from './utilisateur/details-panier/details-panier.component';
+import { PariComponent } from './pari/pari.component';
 
 const routes:Routes = [
   {
@@ -64,7 +65,8 @@ const routes:Routes = [
     SnackBarLoginSuccesComponent,
     DetailsCompteComponent,
     RechercheComponent,
-    DetailsPanierComponent
+    DetailsPanierComponent,
+    PariComponent
   ],
   imports: [
     BrowserModule,

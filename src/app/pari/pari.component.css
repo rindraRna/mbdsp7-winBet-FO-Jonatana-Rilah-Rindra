@@ -1,0 +1,28 @@
+.btnPari2{
+    width: 100%;
+    background-color: #FBBD00;
+    color: #3C3C3C;
+    font-weight: bold;
+}
+
+.iconeJaune{
+    color: #FBBD00; 
+}
+
+.jaune{
+    color: #FBBD00; 
+}
+
+.floatRight{
+    float: right;
+}
+
+.videPanier{
+    color: #3C3C3C;
+    font-weight: bold;
+    margin-top: -5px;
+}
+
+.espacement{
+    margin-left: 10px;
+}

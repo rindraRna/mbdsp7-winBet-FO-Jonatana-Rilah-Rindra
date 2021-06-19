@@ -17,7 +17,7 @@ export class DetailsCompteComponent implements OnInit {
   nom = "";
   email = "";
   solde = 0;
-  displayedColumns: string[] = ['qrCode', 'date', 'mise', 'gainPotentiel', 'etat', 'modifier'];
+  displayedColumns: string[] = ['qrCode', 'date', 'mise', 'gainPotentiel', 'modifier'];
   dataSource = new MatTableDataSource<Panier>();
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;

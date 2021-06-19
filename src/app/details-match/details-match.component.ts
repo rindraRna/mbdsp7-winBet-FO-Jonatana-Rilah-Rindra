@@ -37,10 +37,10 @@ export class DetailsMatchComponent implements OnInit {
     private matchService: MatchPariService,
     private typeService: TypeService,
     private route: ActivatedRoute,
-    public dialog: MatDialog,
-    private pariPanierService: PariPanierService,
-    private snackBar: MatSnackBar,
-    private compteService: CompteService
+    public dialog: MatDialog
+    // private pariPanierService: PariPanierService,
+    // private snackBar: MatSnackBar,
+    // private compteService: CompteService
   ) { }
 
   ngOnInit(): void {
@@ -51,93 +51,35 @@ export class DetailsMatchComponent implements OnInit {
     }
   }
 
-  enregistrerDansPanier(){
-    if(this.produits.length>0){
-      const token = sessionStorage.getItem('token');
-      const idUserConnecte = sessionStorage.getItem('idUserConnecte')
-      console.log("token: "+token);
-      if(token !== null ){
-        console.log("panier non null");
-        this.resourcesLoaded = true;
-        var nbProduit = this.produits.length;
-        this.compteService.getCompteById(sessionStorage.getItem('idUserConnecte'))
-        .subscribe( compte => {
-          var panier = new Panier();
-          panier.compte = compte;
-          panier.date = new Date();
-          panier.gainTotal = 0;
-          panier.miseTotal = 0;
-          panier.qrCode = "";
-          this.panierService.creerPanier(panier)
-          .subscribe( data => {
-            var idPanier = data.message;
-            this.panierService.getPanierById(idPanier)
-            .subscribe( panier => {
-              for(var i = 0; i < nbProduit; i++){
-                var pariPanier = new PariPanier();
-                pariPanier.pari = this.produits[i];
-                pariPanier.panier = panier;
-                this.pariPanierService.ajoutParisDansPanier(pariPanier)
-                .subscribe();
-              }
-              // modification mise et gain total panier
-              panier.gainTotal = this.gainPotentielValeur;
-              panier.miseTotal = this.miseTotalValeur;
-              this.panierService.modifier(panier)
-              .subscribe( () => {
-                console.log("sessionStorage.getItem('idUserConnecte'): "+sessionStorage.getItem('idUserConnecte'))
-                // decaisser compte
-                this.compteService.decaisser(sessionStorage.getItem('idUserConnecte'), this.miseTotalValeur)
-                .subscribe( () => {
-                  this.snackBar.openFromComponent(SnackBarSuccesComponent, {
-                    duration: 5000,
-                  });
-                  this.resourcesLoaded = false;
-                });
-              });
-            });
-          });
-        });
-      }                        
-      else{
-        console.log("panier null");
-        this.dialog.open(LoginComponent);
-      }
-    }
-    else{
-      alert("Faites un pari avant de valider le panier");
-    }
-  }
-
   afficherParis(index){
     this.typeService.getTypeByNom(this.titres[index])
-      .subscribe(data => {
-        var idType = data._id
-        switch(index){
-          case 0: {
-            this.pariService.getPariByIdMatchAndIdType(this.idMatch, idType)
-            .subscribe(data => {
-              this.parisVainqueurs = data; 
-            });
-            break
-          }
-          case 1:{
-            this.pariService.getPariByIdMatchAndIdType(this.idMatch, idType)
-            .subscribe(data => {
-              this.parisMarques = data; 
-            });
-            break
-          }
+    .subscribe(data => {
+      var idType = data._id
+      switch(index){
+        case 0: {
+          this.pariService.getPariByIdMatchAndIdType(this.idMatch, idType)
+          .subscribe(data => {
+            this.parisVainqueurs = data; 
+          });
+          break
         }
-      });
+        case 1:{
+          this.pariService.getPariByIdMatchAndIdType(this.idMatch, idType)
+          .subscribe(data => {
+            this.parisMarques = data; 
+          });
+          break
+        }
+      }
+    });
   }
 
   getMatchById(){
     this.matchService.getMatchById(this.idMatch)
-      .subscribe(data => {
-        this.match = data; 
-        this.resourcesLoaded = false;
-      });
+    .subscribe(data => {
+      this.match = data; 
+      this.resourcesLoaded = false;
+    });
   }
 
   majMiseEtGain(){
@@ -183,27 +125,27 @@ export class DetailsMatchComponent implements OnInit {
       var cote = split[(split.length-1)];
       var valeur = texte.substring(0, (tailleTexte-cote.length-1));
 
-      if(btnClique.style.backgroundColor === "rgb(251, 189, 0)"){
-        // changement couleur btn
-        btnClique.style.backgroundColor = "white";
-        btnClique.style.color = "#607d8b";
-        btnClique.style.fontWeight = "normal";
+      // if(btnClique.style.backgroundColor === "rgb(251, 189, 0)"){
+      //   // changement couleur btn
+      //   btnClique.style.backgroundColor = "white";
+      //   btnClique.style.color = "#607d8b";
+      //   btnClique.style.fontWeight = "normal";
 
-        //supprimer dans panier
-        var pari = this.pariService.getPariByNomEtValeur(this.titres[indiceTitre], valeur, this.produits);
-        this.panierService.supprimerProduit(pari);
+      //   //supprimer dans panier
+      //   var pari = this.pariService.getPariByNomEtValeur(this.titres[indiceTitre], valeur, this.produits);
+      //   this.panierService.supprimerProduit(pari);
 
-        // maj mise total et gain potentiel
-        this.majMiseEtGain();
+      //   // maj mise total et gain potentiel
+      //   this.majMiseEtGain();
 
-      }
-      else{
+      // }
+      // else{
         this.typeService.getTypeByNom(this.titres[indiceTitre])
         .subscribe(type => {
           // changement couleur btn
-          btnClique.style.backgroundColor = "rgb(251, 189, 0)";
-          btnClique.style.color = "#3C3C3C";
-          btnClique.style.fontWeight = "bold";
+          // btnClique.style.backgroundColor = "rgb(251, 189, 0)";
+          // btnClique.style.color = "#3C3C3C";
+          // btnClique.style.fontWeight = "bold";
 
           //ajout dans panier
           var pari = new Pari();
@@ -214,6 +156,8 @@ export class DetailsMatchComponent implements OnInit {
           pari.mise = +200;
           // 2 chiffres apres virgules
           pari.gain = this.deuxChiffresDecimal(pari.mise*pari.cote); 
+          //aide Jo (nampiana)
+          pari.resultat = 0;
           // verification s il y a deja un pari de meme type
           // if(!this.pariService.verifierSiPariDuMemeType(this.titres[indiceTitre], this.produits)){
             this.panierService.ajouterProduit(pari);
@@ -229,7 +173,7 @@ export class DetailsMatchComponent implements OnInit {
           //   alert("Vous ne pouvez pas parier deux (2) fois sur le même type");
           // }
         });  
-      }
+      // }
     }
   }
 

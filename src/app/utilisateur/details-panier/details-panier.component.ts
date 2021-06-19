@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { PariPanier } from 'src/app/model/pari_panier.model';
 import { CompteService } from 'src/app/shared/compte.service';
+import { MatchPariService } from 'src/app/shared/match-pari.service';
 import { PanierService } from 'src/app/shared/panier.service';
 import { PariPanierService } from 'src/app/shared/pari-panier.service';
 
@@ -21,19 +22,50 @@ export class DetailsPanierComponent implements OnInit {
   gain = 0;
   etat = "";
   pariPaniers: PariPanier[];
-  resourcesLoaded = true
+  resourcesLoaded = true;
+  sommeGagne = 0;
+  sommePerdu = 0;
+  resultat = "";
+  matchTermine: number;
 
   constructor(
     private route: ActivatedRoute,
     private compteService: CompteService,
     private panierService: PanierService,
-    private pariPanierService: PariPanierService
+    private pariPanierService: PariPanierService,
+    private matchService: MatchPariService
   ) { }
 
   ngOnInit(): void {
     this.detailsCompte();
     this.getPanierById();
     this.getParisByIdPanier();
+  }
+
+  verifierMatchTermine(idMatch){
+    console.log("idMatch: "+idMatch);
+    this.matchService.getMatchById(idMatch)
+    .subscribe( match => {
+      console.log("etat: "+match.etat)
+      if(match.etat == 2){
+        return true;
+      }
+      else return false;
+    });
+  }
+
+  resultatPari(etat): any{
+    switch(etat){
+      case 0: {
+        return "Match non terminé";
+      }
+      case 1: {
+        return "Gagné";
+      }
+      case 2: {
+        return "Perdu";
+      }
+    }
   }
 
   detailsCompte(){
@@ -61,6 +93,16 @@ export class DetailsPanierComponent implements OnInit {
     .subscribe(pariPaniers => {
       this.pariPaniers = pariPaniers;
       this.resourcesLoaded = false;
+      const nbPari = pariPaniers.length;
+      for(var i = 0; i < nbPari; i++){
+        if(pariPaniers[i].pari.resultat == 1){
+          this.sommeGagne += pariPaniers[i].pari.gain; 
+        }
+        if(pariPaniers[i].pari.resultat == 2){
+          this.sommePerdu += pariPaniers[i].pari.mise;
+        }
+      }
+      this.resultat = "Résultat: Vous avez gagné "+this.sommeGagne+" Ar et perdu "+this.sommePerdu+" Ar";
     });
   }
 

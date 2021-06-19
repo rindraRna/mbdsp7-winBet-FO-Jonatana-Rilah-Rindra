@@ -76,6 +76,9 @@
                         <a><i class="menu-icon fa fa-trophy"></i><span class="activeTxtRna">Championnats</span></a>
                     </li>
                     <li>
+                        <a routerLink="/"> <i class="menu-icon fa fa-angle-double-right"></i>Tous</a>
+                    </li>
+                    <li>
                         <a *ngFor="let championnat of championnats" (click)="macthsChampionnat(championnat._id)"> <i class="menu-icon fa fa-angle-double-right"></i>{{ championnat.nom }}</a>
                     </li>
                     <li class="activeRna">

@@ -14,7 +14,7 @@ export class MatchChampionnatComponent implements OnInit{
   nomChampionnat = ""
   matchs: Match_paris[];
   // Array of images
-  slides = [{'image': '../assets/images/carousel/img1.jpg'}, {'image': '../assets/images/carousel/img1.jpg'},{'image': '../assets/images/carousel/img1.jpg'}];
+  slides = [{'image': '../assets/images/carousel/img1.jpg'}, {'image': '../assets/images/carousel/img2.jpg'},{'image': '../assets/images/carousel/img1.jpg'}];
   resourcesLoaded = true;
 
   constructor(

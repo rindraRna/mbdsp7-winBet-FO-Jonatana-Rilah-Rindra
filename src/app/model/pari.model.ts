@@ -10,4 +10,5 @@ export class Pari{
     cote: number;
     mise: number;
     gain: number;
+    resultat: number;
 }

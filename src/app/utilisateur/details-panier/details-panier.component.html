@@ -66,7 +66,7 @@
                     <li><span class="souligne">Date: </span>{{ date | date }} à {{ date  | date: 'HH:mm'}}</li>
                     <li><span class="souligne">Mise versée: </span>{{mise}} Ar</li>
                     <li><span class="souligne">Gain potentiel : </span>{{gain}} Ar</li>
-                    <li><span class="souligne">Etat: </span>{{etat}}</li>
+                    <li><span class="souligne">{{resultat}}</span></li>
                 </ul>
             </div>
         </div>
@@ -95,7 +95,7 @@
                         <td>{{pariPanier.pari.cote}}</td>
                         <td>{{pariPanier.pari.mise}}</td>
                         <td>{{pariPanier.pari.gain}}</td>
-                        <td></td>
+                        <td>{{ resultatPari(pariPanier.pari.resultat) }}</td>
                     </tr>
                 </tbody>
             </table>

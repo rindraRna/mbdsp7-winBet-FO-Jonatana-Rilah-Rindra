@@ -27,7 +27,7 @@ export class CompteService {
   }
 
   decaisser(idCompte, montant):Observable<any> {
-    return this.http.post(
+    return this.http.put(
       this.uri+"/decaisser", 
       { 
         id: idCompte,
