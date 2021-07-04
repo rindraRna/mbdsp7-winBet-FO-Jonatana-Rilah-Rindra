@@ -7,7 +7,7 @@ import { PariPanier } from '../model/pari_panier.model';
   providedIn: 'root'
 })
 export class PariPanierService {
-  uri = "https://winbet-api.herokuapp.com/api/pari_panier";
+  uri = "https://nodejsapitpt.herokuapp.com/api/pari_panier";
 
   constructor(
     private http: HttpClient

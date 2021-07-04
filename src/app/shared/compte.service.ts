@@ -7,7 +7,7 @@ import { Compte } from '../model/compte.model';
   providedIn: 'root'
 })
 export class CompteService {
-  uri = "https://winbet-api.herokuapp.com/api/compte";
+  uri = "https://nodejsapitpt.herokuapp.com/api/compte";
 
   constructor(
     private http: HttpClient

@@ -7,7 +7,7 @@ import { Match_paris } from '../model/match_paris.model';
   providedIn: 'root'
 })
 export class MatchPariService {
-  uri = "https://winbet-api.herokuapp.com/api/match";
+  uri = "https://nodejsapitpt.herokuapp.com/api/match";
 
   constructor(
     private http: HttpClient

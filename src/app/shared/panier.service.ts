@@ -10,7 +10,7 @@ export class PanierService {
   produits = [];
   miseTotalValeur: number = 0;
   gainPotentielValeur: number = 0;
-  uri = "https://winbet-api.herokuapp.com/api/panier";
+  uri = "https://nodejsapitpt.herokuapp.com/api/panier";
 
   constructor(
     private http: HttpClient

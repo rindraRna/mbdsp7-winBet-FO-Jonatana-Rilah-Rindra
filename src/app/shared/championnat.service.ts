@@ -7,7 +7,7 @@ import { Championnat } from '../model/championnat.model';
   providedIn: 'root'
 })
 export class ChampionnatService {
-  uri = "https://winbet-api.herokuapp.com/api/championnat";
+  uri = "https://nodejsapitpt.herokuapp.com/api/championnat";
 
   constructor(
     private http: HttpClient
