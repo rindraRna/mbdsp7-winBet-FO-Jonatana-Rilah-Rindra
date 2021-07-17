@@ -46,4 +46,9 @@ export class LoginComponent implements OnInit {
     });
   }
 
+  versInscription(){
+    this.router.navigate(['/inscription'])
+    this.dialog.closeAll()
+  }
+
 }

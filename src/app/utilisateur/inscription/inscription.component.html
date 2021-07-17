@@ -1,0 +1,61 @@
+<!-- caroussel debut -->
+<mat-carousel
+  timings="200ms ease-in"
+  [autoplay]="true"
+  interval="5000"
+  color="black"
+  maxWidth="auto"
+  proportion="25"
+  slides="3"
+  [loop]="true"
+  [hideArrows]="false"
+  [hideIndicators]="false"
+  [useKeyboard]="true"
+  [useMouseWheel]="false"
+  orientation="ltr"
+>
+  <mat-carousel-slide
+    #matCarouselSlide
+    *ngFor="let slide of slides; let i = index"
+    [image]="slide.image"
+    overlayColor="#00000040"
+    [hideOverlay]="false"
+  ></mat-carousel-slide>
+</mat-carousel>
+<!-- caroussel fin -->
+<mat-card>
+  <div class="align-center loader">
+    <mat-spinner *ngIf="resourcesLoaded"></mat-spinner>
+  </div> 
+  <div class="textCenter message">{{ message }}</div>
+  <div class="row">
+    <div class="col-md-7">
+      <hr/>
+      <h5 class="jaune textCenter">Inscription</h5>
+      <div class="inscription">
+        <span>En vous inscrivant sur <span class="jauneBold">win</span><span class="noirBold">bet</span>, vous pouvez profiter des fonctionnalités suivantes:</span>
+        <ul class="marge">
+          <li> Valider votre <strong>panier</strong></li>
+          <li> Voir votre <strong>solde</strong></li>
+          <li> Voir l'<strong>historique</strong> de votre panier ainsi que les <strong>paris correspondants</strong></li>
+        </ul>
+      </div>
+      <hr/>
+      <div class="textCenter">
+        <img src="../../../assets/images/winbet.png" alt="winBet-logo" height="85"/>
+      </div>
+    </div>
+    <div class="col-md-5">
+      <form>
+        <label><mat-icon  class="iconRna">assignment_ind</mat-icon> Identifiant</label>
+        <input type="text" class="form-control" [(ngModel)]="identifiant" name="identifiant" placeholder="Entrer votre identifiant"/>
+        <label class="margeHaut"><mat-icon  class="iconJauneRna">drafts</mat-icon> email</label>
+        <input type="email" class="form-control" [(ngModel)]="email" name="email" placeholder="Entrer votre email"/>
+        <label class="margeHaut"><mat-icon  class="iconRna"> vpn_key</mat-icon> Mot de passe</label>
+        <input type="password" class="form-control" [(ngModel)]="motDePasse" name="motDePasse" placeholder="Entrer votre mot de passe"/>
+        <div class="textCenter margeHaut">Un <span class="jaune">mail</span> de bienvenu vous sera envoyé apres l'inscription</div>
+        <button (click)="inscription()" class="margeHaut btn btn-outline-secondary btnPari2">S'inscrire</button>
+      </form>
+    </div>
+  </div>
+</mat-card>

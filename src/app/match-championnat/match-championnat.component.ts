@@ -11,6 +11,7 @@ import { MatchPariService } from '../shared/match-pari.service';
   styleUrls: ['./match-championnat.component.css']
 })
 export class MatchChampionnatComponent implements OnInit{
+  nomUtilisateur = "";
   nomChampionnat = ""
   matchs: Match_paris[];
   // Array of images
@@ -25,8 +26,10 @@ export class MatchChampionnatComponent implements OnInit{
   }
 
   ngOnInit(): void {
+    this.nomUtilisateur = sessionStorage.getItem('nomUser');
     this.getChampionnat()
     this.getMatchsByChampionnat()
+    setTimeout(() => { this.ngOnInit() }, 1000);
   }
 
   getChampionnat(){

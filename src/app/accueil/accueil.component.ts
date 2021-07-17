@@ -9,10 +9,11 @@ import { MatchPariService } from '../shared/match-pari.service';
   styleUrls: ['./accueil.component.css']
 })
 export class AccueilComponent implements OnInit {
+  nomUtilisateur = ""
   idChampionnat = this.route.snapshot.params.idChampionnat;
   matchs: Match_paris[];
   // Array of images
-  slides = [{'image': '../assets/images/carousel/img1.jpg'}, {'image': '../assets/images/carousel/img2.jpg'},{'image': '../assets/images/carousel/img1.jpg'}];
+  slides = [{'image': '../assets/images/carousel/img1.jpg'}, {'image': '../assets/images/carousel/img2.jpg'},{'image': '../assets/images/carousel/img3.jpg'}];
   resourcesLoaded = true;
   
   constructor(
@@ -21,7 +22,9 @@ export class AccueilComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.nomUtilisateur = sessionStorage.getItem('nomUser')
     this.getMacthsPariables()
+    setTimeout(() => { this.ngOnInit() }, 1000);
   }
 
   getMacthsPariables(){

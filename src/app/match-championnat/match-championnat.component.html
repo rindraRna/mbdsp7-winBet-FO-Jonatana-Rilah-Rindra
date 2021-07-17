@@ -1,3 +1,4 @@
+<app-compte *ngIf="nomUtilisateur !== null"></app-compte>
 <!-- caroussel debut -->
 <mat-carousel
   timings="200ms ease-in"
@@ -29,30 +30,35 @@
 <div class="orders">
     <div class="row">
         <div class="col-xl-8">
-            <div class="align-center loader">
-                <mat-spinner *ngIf="resourcesLoaded"></mat-spinner>
-            </div> 
-            <section *ngFor="let match of matchs">
-                <mat-card>
-                    <div class="floatRight">
-                        <div  class="with-icon">
-                            <mat-icon>calendar_today</mat-icon><span class="espacement">{{ match.date  | date}}</span>
+            <cdk-virtual-scroll-viewport itemSize="50" class="example-viewport">
+                <div class="align-center loader">
+                    <mat-spinner *ngIf="resourcesLoaded"></mat-spinner>
+                </div> 
+                <!-- <mat-card *ngIf="matchs.length == 0">
+                    <p class="center">Aucun match correspondant</p>
+                </mat-card> -->
+                <section *cdkVirtualFor="let match of matchs">
+                    <mat-card>
+                        <div class="floatRight">
+                            <div  class="with-icon">
+                                <mat-icon>calendar_today</mat-icon><span class="espacement">{{ match.date  | date}}</span>
+                            </div>
+                            <div  class="with-icon">
+                                <mat-icon>access_time</mat-icon><span class="espacement">{{ match.date | date: 'HH:mm'}}</span>
+                                <!-- <mat-icon>access_time</mat-icon><span class="espacement">{{ match.date | date: 'HH:mm zzzz'}}</span> -->
+                            </div>
                         </div>
-                        <div  class="with-icon">
-                            <mat-icon>access_time</mat-icon><span class="espacement">{{ match.date | date: 'HH:mm'}}</span>
-                            <!-- <mat-icon>access_time</mat-icon><span class="espacement">{{ match.date | date: 'HH:mm zzzz'}}</span> -->
+                        <div>
+                            <mat-card-title class="titreCard">{{ match.equipe1.nom }} vs {{ match.equipe2.nom }}</mat-card-title>
+                            <mat-card-subtitle class="jaune">{{ match.championnat.nom }}</mat-card-subtitle>
                         </div>
-                    </div>
-                    <div>
-                        <mat-card-title class="titreCard">{{ match.equipe1.nom }} vs {{ match.equipe2.nom }}</mat-card-title>
-                        <mat-card-subtitle class="jaune">{{ match.championnat.nom }}</mat-card-subtitle>
-                    </div>
-                    <a routerLink="/details/{{ match._id }}">
-                        <button class="btn btn-secondary btn-sm btnRna">Parier</button>
-                    </a>
-                </mat-card>
-                <hr/>
-            </section>
+                        <a routerLink="/details/{{ match._id }}">
+                            <button class="btn btn-secondary btn-sm btnRna">Parier</button>
+                        </a>
+                    </mat-card>
+                    <hr/>
+                </section>
+            </cdk-virtual-scroll-viewport>
         </div>
 
         <div class="col-xl-4">

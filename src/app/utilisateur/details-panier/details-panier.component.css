@@ -27,3 +27,11 @@ th{
 .loader ::ng-deep .mat-progress-spinner circle, .mat-spinner circle {
     stroke: #FBBD00;
 }
+
+.textDroite{
+    text-align: right;
+}
+
+.icone-qrCode{
+    font-size: 105px;
+}

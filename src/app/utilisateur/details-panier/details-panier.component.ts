@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { PariPanier } from 'src/app/model/pari_panier.model';
+import { QrCodeComponent } from 'src/app/qr-code/qr-code.component';
 import { CompteService } from 'src/app/shared/compte.service';
 import { MatchPariService } from 'src/app/shared/match-pari.service';
 import { PanierService } from 'src/app/shared/panier.service';
@@ -13,10 +15,7 @@ import { PariPanierService } from 'src/app/shared/pari-panier.service';
 })
 export class DetailsPanierComponent implements OnInit {
   idPanier = this.route.snapshot.params.idPanier;
-  nom = "";
-  email = "";
-  solde = 0;
-  idUtilisateur = sessionStorage.getItem('idUserConnecte');
+  idUtilisateur = ""
   date: Date;
   mise = 0;
   gain = 0;
@@ -30,16 +29,29 @@ export class DetailsPanierComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private compteService: CompteService,
+    private dialog: MatDialog,
     private panierService: PanierService,
     private pariPanierService: PariPanierService,
     private matchService: MatchPariService
   ) { }
 
   ngOnInit(): void {
-    this.detailsCompte();
+    this.idUtilisateur = sessionStorage.getItem('idUserConnecte');
     this.getPanierById();
     this.getParisByIdPanier();
+    // setTimeout(() => { this.ngOnInit() }, 1000);
+  }
+
+  afficherQrCode(idPanier){
+    const dialogRef = this.dialog.open(QrCodeComponent, {
+      data: {
+        'idPanier': idPanier
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
   }
 
   verifierMatchTermine(idMatch){
@@ -68,15 +80,6 @@ export class DetailsPanierComponent implements OnInit {
     }
   }
 
-  detailsCompte(){
-    this.compteService.getCompteById(this.idUtilisateur)
-    .subscribe(compte => {
-      this.nom = compte.nomUtilisateur;
-      this.email = compte.email;
-      this.solde = compte.solde;
-    })
-  }
-
   getPanierById(){
     this.panierService.getPanierById(this.idPanier)
     .subscribe(panier => {
@@ -88,11 +91,10 @@ export class DetailsPanierComponent implements OnInit {
   }
 
   getParisByIdPanier(){
-    this.resourcesLoaded = true;
+    // this.resourcesLoaded = true;
     this.pariPanierService.getParisByIdPanier(this.idPanier)
     .subscribe(pariPaniers => {
       this.pariPaniers = pariPaniers;
-      this.resourcesLoaded = false;
       const nbPari = pariPaniers.length;
       for(var i = 0; i < nbPari; i++){
         if(pariPaniers[i].pari.resultat == 1){
@@ -102,7 +104,8 @@ export class DetailsPanierComponent implements OnInit {
           this.sommePerdu += pariPaniers[i].pari.mise;
         }
       }
-      this.resultat = "Résultat: Vous avez gagné "+this.sommeGagne+" Ar et perdu "+this.sommePerdu+" Ar";
+      this.resultat = "Résultat: Vous avez gagné "+this.sommeGagne.toLocaleString()+" Ar et perdu "+this.sommePerdu.toLocaleString()+" Ar";
+      this.resourcesLoaded = false;
     });
   }
 

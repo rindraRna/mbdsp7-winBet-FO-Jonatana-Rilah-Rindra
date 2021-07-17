@@ -41,3 +41,9 @@
 .loader ::ng-deep .mat-progress-spinner circle, .mat-spinner circle {
     stroke: #FBBD00;
 }
+
+.example-viewport {
+    height: 600px;
+    width: 100%;
+    border: 1px solid #878788;
+}

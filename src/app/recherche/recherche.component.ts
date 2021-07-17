@@ -9,6 +9,7 @@ import { MatchPariService } from '../shared/match-pari.service';
   styleUrls: ['./recherche.component.css']
 })
 export class RechercheComponent implements OnInit {
+  nomUtilisateur = "";
   texte = this.route.snapshot.params.texte;
   matchs: Match_paris[];
   // Array of images
@@ -22,7 +23,9 @@ export class RechercheComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.nomUtilisateur = sessionStorage.getItem('nomUser');
     this.getMacthsRecherches()
+    setTimeout(() => { this.ngOnInit() }, 1000);
   }
 
   getMacthsRecherches(){

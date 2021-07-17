@@ -27,7 +27,8 @@
               "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.css",
               "src/assets/css/cs-skin-elastic.css",
-              "src/assets/css/style.css"
+              "src/assets/css/style.css",
+              "./node_modules/leaflet/dist/leaflet.css"
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js"

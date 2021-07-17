@@ -1,44 +1,52 @@
-<div class="card-header">
-    <div>
-        <button (click)="viderPanier()" class="btn btn-outline-secondary btn-sm floatRight videPanier"><i class="fa fa-trash"></i><span class="espacement">Vider le panier</span></button>
-    </div>
-    <strong class="card-title">Vos <span class="jaune">paris</span></strong>
-</div>
-<div class="card-body" >
-    <div *ngFor="let produit of produits">
+<div class="pari">
+    <div class="card-header">
         <div>
-            <div class="floatRight">
-                <i (click)="supprimerDuPanier(produit.type.nom, produit.valeur)" class="fa fa-trash iconeJaune"></i>
-            </div>
-            <p><strong>{{produit.match.equipe1.nom}}  vs {{produit.match.equipe2.nom}}</strong></p>
+            <button (click)="viderPanier()" class="btn btn-outline-secondary btn-sm floatRight videPanier"><i class="fa fa-trash"></i><span class="espacement">Vider</span></button>
         </div>
-        <p><strong>{{produit.type.nom}}: </strong> {{produit.valeur}}</p>
+        <strong class="card-title">Vos <span class="jaune">paris</span></strong>
+    </div>
+    <div class="card-body" >
+        <div *ngFor="let produit of produits">
+            <div>
+                <div class="floatRight">
+                    <i (click)="supprimerDuPanier(produit.type.nom, produit.valeur)" class="fa fa-trash iconeJaune"></i>
+                </div>
+                <p><strong>{{produit.match.equipe1.nom}}  vs {{produit.match.equipe2.nom}}</strong></p>
+            </div>
+            <p><strong>{{produit.type.nom}}: </strong> {{produit.valeur}}</p>
+            <div class="row">
+                <div class="col-md-3">
+                    <p><strong>Cote: </strong><br/>{{produit.cote}}</p>
+                </div>
+                <div class="col-md-5">
+                    <p>
+                        <!-- <input *ngIf="dansDetails" (change)="calculGain($event, produit)" (keyup)="calculGain($event, produit)" type="number" class="form-control inputPari" value="200"/> -->
+                        <input (change)="calculGain($event, produit)" (keyup)="calculGain($event, produit)" type="number" class="form-control inputPari" value="{{ produit.mise }}"/>
+                    </p>
+                </div>
+                <div class="col-md-4">
+                    <p><strong>Gain:</strong><br/> {{produit.gain | number:'':'fr'}}</p>
+                </div>
+            </div>
+            <hr/>
+        </div>
+    </div>
+    <div class="card-footer">
         <div class="row">
-            <div class="col-md-3">
-                <p><strong>Cote: </strong><br/>{{produit.cote}}</p>
+            <div class="col-md-6">
+                <strong>Mise totale:</strong><br/>{{miseTotalValeur | number:'':'fr'}}
             </div>
-            <div class="col-md-5">
-                <p>
-                    <input (change)="calculGain($event, produit)" (keyup)="calculGain($event, produit)" type="number" class="form-control inputPari" value="{{ produit.gain / produit.cote }}"/>
-                </p>
+            <div class="col-md-6">
+                <strong>Gain potentiel:</strong><br/>{{gainPotentielValeur | number:'':'fr'}}
             </div>
-            <div class="col-md-4">
-                <p><strong>Gains:</strong><br/> {{produit.gain}}</p>
-            </div>
-        </div>
-        <hr/>
-    </div>
-</div>
-<div class="card-footer">
-    <div class="row">
-        <div class="col-md-6">
-            <strong>Mise total:</strong><br/>{{miseTotalValeur}}
-        </div>
-        <div class="col-md-6">
-            <strong>Gain potentiel:</strong><br/>{{gainPotentielValeur}}
         </div>
     </div>
+    <button (click)="enregistrerDansPanier()" class="btn btn-outline-secondary btnPari2">
+        Valider mon panier
+    </button>
+    <br/><br/>
+    <div class="align-center loader">
+        <mat-spinner *ngIf="resourcesLoaded"></mat-spinner>
+    </div> 
+    <br/><br/>
 </div>
-<button (click)="enregistrerDansPanier()" class="btn btn-outline-secondary btnPari2">
-    Parier
-</button>

@@ -1,0 +1,14 @@
+<div class="centreText">
+    <h2 mat-dialog-title><span class="jaune">QR Code </span>du pari</h2>
+    <mat-dialog-content class="mat-typography">
+        <div class="align-center loader">
+            <mat-spinner *ngIf="resourcesLoaded"></mat-spinner>
+        </div> 
+        <qr-code *ngIf="!resourcesLoaded"  #qrCode [value]="text_qrCode" [size]="350" [level]="level"></qr-code>
+        <p class="note">Pour voir les détails du pari, vous pouvez scanner le Qr Code depuis l'application mobile</p>
+    </mat-dialog-content>
+    <a href="../assets/apk/test.apk"> 
+        <button class="btn btn-outline-secondary btnPari2">Télécharger l'application mobile</button>
+    </a>
+    <button class="btn btn-outline-secondary btnRna espacement" mat-dialog-close>Fermer</button>
+</div>

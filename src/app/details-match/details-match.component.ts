@@ -21,6 +21,7 @@ import { LoginComponent } from '../utilisateur/login/login.component';
   styleUrls: ['./details-match.component.css']
 })
 export class DetailsMatchComponent implements OnInit {
+  nomUtilisateur = ""
   produits: Pari[] = this.panierService.getProduits();
   titres = ["Vainqueur", "Les deux équipes marquent"];
   miseTotalValeur: number = this.panierService.miseTotalValeur;
@@ -44,11 +45,13 @@ export class DetailsMatchComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.nomUtilisateur = sessionStorage.getItem('nomUser');
     this.getMatchById();
     var nbTypeParis = this.titres.length
     for(var i = 0; i < nbTypeParis; i++){
       this.afficherParis(i)
     }
+    setTimeout(() => { this.ngOnInit() }, 1000);
   }
 
   afficherParis(index){
@@ -136,7 +139,7 @@ export class DetailsMatchComponent implements OnInit {
       //   this.panierService.supprimerProduit(pari);
 
       //   // maj mise total et gain potentiel
-      //   this.majMiseEtGain();
+        // this.majMiseEtGain();
 
       // }
       // else{
@@ -156,22 +159,17 @@ export class DetailsMatchComponent implements OnInit {
           pari.mise = +200;
           // 2 chiffres apres virgules
           pari.gain = this.deuxChiffresDecimal(pari.mise*pari.cote); 
-          //aide Jo (nampiana)
           pari.resultat = 0;
           // verification s il y a deja un pari de meme type
-          // if(!this.pariService.verifierSiPariDuMemeType(this.titres[indiceTitre], this.produits)){
+          if(!this.pariService.verifierSiPariDuMemeType(this.titres[indiceTitre], valeur, this.match._id, this.produits)){
             this.panierService.ajouterProduit(pari);
 
             // maj mise total et gain potentiel
             this.majMiseEtGain();
-          // }
-          // else{
-          //   // ne pas changer la couleur du btn
-          //   btnClique.style.backgroundColor = "white";
-          //   btnClique.style.color = "#607d8b";
-
-          //   alert("Vous ne pouvez pas parier deux (2) fois sur le même type");
-          // }
+          }
+          else{
+            alert("Vous avez déjà parié le même pari");
+          }
         });  
       // }
     }

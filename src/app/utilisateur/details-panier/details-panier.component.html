@@ -1,56 +1,4 @@
-<div class="row">
-    <div class="col-lg-3 col-md-6">
-        <div class="card">
-            <div class="card-body">
-                <div class="stat-widget-five">
-                    <div class="stat-icon dib flat-color-1">
-                        <i class="pe-7s-cash"></i>
-                    </div>
-                    <div class="stat-content">
-                        <div class="text-left dib">
-                            <div class="stat-text"><span class="count">{{ solde }}</span> Ar</div>
-                            <div class="stat-heading">Votre solde</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-lg-6 col-md-6">
-        <div class="card">
-            <div class="card-body">
-                <div class="stat-widget-five">
-                    <div class="stat-icon dib flat-color-4">
-                        <i class="pe-7s-users"></i>
-                    </div>
-                    <div class="stat-content">
-                        <div class="text-left dib">
-                            <div class="stat-text"><span class="count">{{nom}} - {{email}}</span></div>
-                            <div class="stat-heading">Profil</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-lg-3 col-md-6">
-        <div class="card">
-            <div class="card-body">
-                <div class="stat-widget-five">
-                    <div class="stat-icon dib flat-color-1">
-                        <i class="pe-7s-cart"></i>
-                    </div>
-                    <div class="stat-content">
-                        <div class="text-left dib">
-                            <div class="stat-text"><span class="count">{{ solde }}</span></div>
-                            <div class="stat-heading">Nombre de pari</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+<app-compte></app-compte>
 <h4><span class="jaune">Détails</span> de votre pari</h4>
 <br/>
 <mat-card>
@@ -58,14 +6,16 @@
     <div class="centre">
         <div class="row">
             <div class="col-md-4">
-                <input #id type="hidden" value="{{idPanier}}" />
-                <qr-code  #qrCode [value]="id.value" [size]="100"></qr-code>
+                <mat-icon class="icone-qrCode" (click)="afficherQrCode(idPanier)" title="Cliquer ici pour ourvir le qrCode">qr_code</mat-icon>
+                <!-- <input #id type="hidden" value="{{idPanier}}" /> -->
+                <!-- <input #id type="hidden" value="{{testCon}}" />
+                <qr-code [level]="level" [value]="id.value" [size]="100" ></qr-code> -->
             </div>
             <div class="col-md-8">
                 <ul>
                     <li><span class="souligne">Date: </span>{{ date | date }} à {{ date  | date: 'HH:mm'}}</li>
-                    <li><span class="souligne">Mise versée: </span>{{mise}} Ar</li>
-                    <li><span class="souligne">Gain potentiel : </span>{{gain}} Ar</li>
+                    <li><span class="souligne">Mise versée: </span>{{mise | number:'':'fr' }} Ar</li>
+                    <li><span class="souligne">Gain potentiel : </span>{{gain | number:'':'fr' }} Ar</li>
                     <li><span class="souligne">{{resultat}}</span></li>
                 </ul>
             </div>
@@ -82,9 +32,9 @@
                     <tr>
                         <th class="th-jaune" scope="col">Match</th>
                         <th scope="col">Pari</th>
-                        <th class="th-jaune" scope="col">Cote</th>
-                        <th scope="col">Mise (Ar)</th>
-                        <th class="th-jaune" scope="col">Gain (Ar)</th>
+                        <th class="th-jaune textDroite" scope="col">Cote</th>
+                        <th scope="col textDroite">Mise (Ar)</th>
+                        <th class="th-jaune textDroite" scope="col">Gain (Ar)</th>
                         <th scope="col">Résultat</th>
                     </tr>
                 </thead>
@@ -92,9 +42,9 @@
                     <tr *ngFor="let pariPanier of pariPaniers">
                         <td>{{pariPanier.pari.match.equipe1.nom}} vs {{pariPanier.pari.match.equipe2.nom}} ({{ pariPanier.pari.match.date | date }} à {{ pariPanier.pari.match.date | date: 'HH:mm' }})</td>
                         <td>{{pariPanier.pari.type.nom}}: {{pariPanier.pari.valeur}}</td>
-                        <td>{{pariPanier.pari.cote}}</td>
-                        <td>{{pariPanier.pari.mise}}</td>
-                        <td>{{pariPanier.pari.gain}}</td>
+                        <td class="textDroite">{{pariPanier.pari.cote}}</td>
+                        <td class="textDroite">{{pariPanier.pari.mise | number:'':'fr'}}</td>
+                        <td class="textDroite">{{pariPanier.pari.gain | number:'':'fr'}}</td>
                         <td>{{ resultatPari(pariPanier.pari.resultat) }}</td>
                     </tr>
                 </tbody>

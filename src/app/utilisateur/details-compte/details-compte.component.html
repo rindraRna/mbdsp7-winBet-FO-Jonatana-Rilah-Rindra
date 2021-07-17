@@ -1,56 +1,4 @@
-<div class="row">
-    <div class="col-lg-3 col-md-6">
-        <div class="card">
-            <div class="card-body">
-                <div class="stat-widget-five">
-                    <div class="stat-icon dib flat-color-1">
-                        <i class="pe-7s-cash"></i>
-                    </div>
-                    <div class="stat-content">
-                        <div class="text-left dib">
-                            <div class="stat-text"><span class="count">{{ solde }}</span> Ar</div>
-                            <div class="stat-heading">Votre solde</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-lg-6 col-md-6">
-        <div class="card">
-            <div class="card-body">
-                <div class="stat-widget-five">
-                    <div class="stat-icon dib flat-color-4">
-                        <i class="pe-7s-users"></i>
-                    </div>
-                    <div class="stat-content">
-                        <div class="text-left dib">
-                            <div class="stat-text"><span class="count">{{nom}} - {{email}}</span></div>
-                            <div class="stat-heading">Profil</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-lg-3 col-md-6">
-        <div class="card">
-            <div class="card-body">
-                <div class="stat-widget-five">
-                    <div class="stat-icon dib flat-color-1">
-                        <i class="pe-7s-cart"></i>
-                    </div>
-                    <div class="stat-content">
-                        <div class="text-left dib">
-                            <div class="stat-text"><span class="count">{{ solde }}</span></div>
-                            <div class="stat-heading">Nombre de pari</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+<app-compte></app-compte>
 <h4><span class="jaune">Historique</span> de vos paris</h4>
 <br/>
 <div class="row">
@@ -99,10 +47,12 @@
                   <table class="table table-striped table-bordered" mat-table [dataSource]="dataSource" matSort>
                     <!-- Position Column -->
                     <ng-container matColumnDef="qrCode">
-                      <th mat-sort-header mat-header-cell *matHeaderCellDef> qrCode</th>
-                      <td class="centre" mat-cell *matCellDef="let element">
-                        <input #id type="hidden" value="{{element._id}}" />
-                        <qr-code  #qrCode [value]="id.value" [size]="50"></qr-code>
+                      <th class="centreText" mat-sort-header mat-header-cell *matHeaderCellDef> QR Code</th>
+                      <td  class="centreText" mat-cell *matCellDef="let element">
+                        <mat-icon (click)="afficherQrCode(element._id)" title="Cliquer ici pour ourvir le qrCode">qr_code</mat-icon>
+                        <!-- <input #id type="text" value={{qrCodeText(element._id)}} /> -->
+                        <!-- <input #id type="hidden" value={{element._id}} />
+                        <qr-code  #qrCode [value]="id.value" [size]="50" [level]="L"></qr-code> -->
                       </td>
                     </ng-container>
                   
@@ -114,20 +64,20 @@
                   
                     <!-- Weight Column -->
                     <ng-container matColumnDef="mise">
-                      <th mat-header-cell *matHeaderCellDef> Mise versée (Ar) </th>
-                      <td mat-cell *matCellDef="let element"> {{element.miseTotal}} </td>
+                      <th class="textDroite" mat-header-cell *matHeaderCellDef> Mise versée (Ar) </th>
+                      <td class="textDroite" mat-cell *matCellDef="let element"> {{element.miseTotal | number:'':'fr' }} </td>
                     </ng-container>
                   
                     <!-- Symbol Column -->
                     <ng-container matColumnDef="gainPotentiel">
-                      <th mat-header-cell *matHeaderCellDef> <span class="th-jaune">Gain potentiel (Ar) </span> </th>
-                      <td mat-cell *matCellDef="let element"> {{element.gainTotal}}</td>
+                      <th class="textDroite" mat-header-cell *matHeaderCellDef> <span class="th-jaune">Gain potentiel (Ar) </span> </th>
+                      <td class="textDroite" mat-cell *matCellDef="let element"> {{element.gainTotal | number:'':'fr' }}</td>
                     </ng-container>
 
                     <ng-container matColumnDef="modifier">
                       <th mat-header-cell *matHeaderCellDef></th>
-                      <td mat-cell *matCellDef="let element">
-                        <mat-icon routerLink="/panier/{{element._id}}">create</mat-icon>
+                      <td class="centreText" mat-cell *matCellDef="let element">
+                        <mat-icon routerLink="/panier/{{element._id}}" title="Plus de détails">create</mat-icon>
                       </td>
                     </ng-container>
                   

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
@@ -19,9 +19,10 @@ import { LoginComponent } from '../utilisateur/login/login.component';
 })
 export class PariComponent implements OnInit {
   produits: Pari[] = this.panierService.getProduits();
-  miseTotalValeur: number = this.panierService.miseTotalValeur;
-  gainPotentielValeur: number = this.panierService.gainPotentielValeur;
-  resourcesLoaded = true;
+  @Input() miseTotalValeur
+  @Input() gainPotentielValeur
+  resourcesLoaded = false;
+  dansDetails = false;
 
   constructor(
     private panierService: PanierService,
@@ -34,6 +35,9 @@ export class PariComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    if (this.router.url.startsWith("/details")) {
+      this.dansDetails = true;     
+    }
   }
 
   viderPanier(){
@@ -52,57 +56,58 @@ export class PariComponent implements OnInit {
   enregistrerDansPanier(){
     if(this.produits.length>0){
       const token = sessionStorage.getItem('token');
-      const idUserConnecte = sessionStorage.getItem('idUserConnecte')
       console.log("token: "+token);
       if(token !== null ){
-        console.log("panier non null");
-        this.resourcesLoaded = true;
-        var nbProduit = this.produits.length;
         this.compteService.getCompteById(sessionStorage.getItem('idUserConnecte'))
         .subscribe( compte => {
-          var panier = new Panier();
-          panier.compte = compte;
-          panier.date = new Date();
-          panier.gainTotal = 0;
-          panier.miseTotal = 0;
-          panier.qrCode = "";
-          this.panierService.creerPanier(panier)
-          .subscribe( data => {
-            var idPanier = data.message;
-            this.panierService.getPanierById(idPanier)
-            .subscribe( panier => {
-              for(var i = 0; i < nbProduit; i++){
-                var pariPanier = new PariPanier();
-                pariPanier.pari = this.produits[i];
-                pariPanier.panier = panier;
-                this.pariPanierService.ajoutParisDansPanier(pariPanier)
-                .subscribe();
-              }
-              // modification mise et gain total panier
-              panier.gainTotal = this.gainPotentielValeur;
-              panier.miseTotal = this.miseTotalValeur;
-              console.log("this.gainPotentielValeur: "+this.gainPotentielValeur);
-              console.log("this.miseTotalValeur: "+this.miseTotalValeur);
-              console.log("panier.gainTotal: "+panier.gainTotal);
-              console.log("panier.miseTotal: "+panier.miseTotal);
-              this.panierService.modifier(panier)
-              .subscribe( () => {
-                console.log("sessionStorage.getItem('idUserConnecte'): "+sessionStorage.getItem('idUserConnecte'))
-                // decaisser compte
-                this.compteService.decaisser(sessionStorage.getItem('idUserConnecte'), this.miseTotalValeur)
-                .subscribe( () => {
-                  this.snackBar.openFromComponent(SnackBarSuccesComponent, {
-                    duration: 5000,
+          if(compte.solde > this.miseTotalValeur){
+            this.resourcesLoaded = true;
+            var nbProduit = this.produits.length;
+            this.compteService.getCompteById(sessionStorage.getItem('idUserConnecte'))
+            .subscribe( compte => {
+              var panier = new Panier();
+              panier.compte = compte;
+              panier.date = new Date();
+              panier.gainTotal = 0;
+              panier.miseTotal = 0;
+              panier.qrCode = "";
+              this.panierService.creerPanier(panier)
+              .subscribe( data => {
+                var idPanier = data.message;
+                this.panierService.getPanierById(idPanier)
+                .subscribe( panier => {
+                  for(var i = 0; i < nbProduit; i++){
+                    var pariPanier = new PariPanier();
+                    pariPanier.pari = this.produits[i];
+                    pariPanier.panier = panier;
+                    this.pariPanierService.ajoutParisDansPanier(pariPanier)
+                    .subscribe();
+                  }
+                  // modification mise et gain total panier
+                  panier.gainTotal = this.gainPotentielValeur;
+                  panier.miseTotal = this.miseTotalValeur;
+                  this.panierService.modifier(panier)
+                  .subscribe( () => {
+                    console.log("sessionStorage.getItem('idUserConnecte'): "+sessionStorage.getItem('idUserConnecte'))
+                    // decaisser compte
+                    this.compteService.decaisser(sessionStorage.getItem('idUserConnecte'), this.miseTotalValeur)
+                    .subscribe( () => {
+                      this.snackBar.openFromComponent(SnackBarSuccesComponent, {
+                        duration: 5000,
+                      });
+                      this.resourcesLoaded = false;
+                    });
                   });
-                  this.resourcesLoaded = false;
                 });
               });
             });
-          });
+          }
+          else{
+            alert("Erreur: Votre solde est insuffisant")
+          }
         });
       }                        
       else{
-        console.log("panier null");
         this.dialog.open(LoginComponent);
       }
     }
@@ -112,7 +117,7 @@ export class PariComponent implements OnInit {
   }
 
   majMiseEtGain(){
-    this.panierService.totalMiseEtGain();
+    // this.panierService.totalMiseEtGain();
 
     var sommeMise = 0;
     var sommeGain = 0;

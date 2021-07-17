@@ -1,0 +1,62 @@
+.margeHaut{
+    margin-top: 7px;
+}
+
+.jaune{
+    color: #FBBD00;
+}
+
+.jauneBold{
+    color: #FBBD00;
+    font-weight: 600;
+    font-style: italic;
+}
+
+.message{
+    color: #FBBD00;
+    font-weight: 500;
+}
+
+.noirBold{
+    color: #3C3C3C;
+    font-weight: 600;
+    font-style: italic;
+}
+
+.btnPari2{
+    width: 100%;
+    background-color: #FBBD00;
+    color: #3C3C3C;
+}
+
+.iconRna{
+    font-size: 14px;
+    color: #3C3C3C;
+}
+
+.iconJauneRna{
+    font-size: 14px;
+    color: #FBBD00;
+}
+
+.textCenter{
+    text-align: center;
+}
+
+.marge{
+    margin-left: 7%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+
+strong{
+    font-weight: 500;
+}
+
+.align-center{
+    margin-left: 43%;
+}
+
+.loader ::ng-deep .mat-progress-spinner circle, .mat-spinner circle {
+    stroke: #FBBD00;
+}

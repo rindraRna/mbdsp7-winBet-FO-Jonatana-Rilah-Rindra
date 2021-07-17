@@ -13,6 +13,14 @@ export class PariPanierService {
     private http: HttpClient
   ) { }
 
+  qrCode(idPanier: string): Observable<any>{
+    return this.http.get<any>(this.uri+"/qrCode/"+idPanier);
+  }  
+
+  getNbPariByIdUtilisateur(idUtilisateur: string): Observable<any>{
+    return this.http.get<any>(this.uri+"/compte/"+idUtilisateur);
+  }
+
   ajoutParisDansPanier(pari_panier: PariPanier):Observable<any> {
     return this.http.post(this.uri+"s", pari_panier);
   }

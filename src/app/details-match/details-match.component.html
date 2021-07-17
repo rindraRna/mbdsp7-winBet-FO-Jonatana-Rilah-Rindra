@@ -1,3 +1,4 @@
+<app-compte *ngIf="nomUtilisateur !== null"></app-compte>
 <h4><span class="jaune">Détails</span> du match</h4>
 <br/>
 <!-- Orders -->
@@ -38,13 +39,16 @@
                     </div>
                 </div>
             </div>
-        </div>  <!-- /.col-lg-8 -->
+            <div class="map">
+                <app-map [stade]=match.stade [endroit]=match.endroit></app-map>
+            </div>
+        </div> 
 
         <div class="col-xl-4">
             <div class="row">
                 <div class="col-lg-6 col-xl-12">
                     <div class="card bg-flat-color-3">
-                        <app-pari></app-pari>
+                        <app-pari [miseTotalValeur]=miseTotalValeur [gainPotentielValeur]=gainPotentielValeur></app-pari>
                     </div>
                 </div>
             </div>

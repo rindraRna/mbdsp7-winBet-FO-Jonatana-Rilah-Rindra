@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
@@ -7,14 +7,14 @@ import { RouterModule, Routes } from '@angular/router';
 import { AccueilComponent } from './accueil/accueil.component';
 import { DetailsMatchComponent } from './details-match/details-match.component';
 
-import {MatCardModule} from '@angular/material/card';
+import { MatCardModule } from '@angular/material/card';
 import {MatIconModule} from '@angular/material/icon';
 import { MatCarouselModule } from '@ngmodule/material-carousel';
 import {HttpClientModule} from '@angular/common/http';
 import { MatchChampionnatComponent } from './match-championnat/match-championnat.component';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { LoginComponent } from './utilisateur/login/login.component'
-import {MatDialogModule} from '@angular/material/dialog';
+import { MatDialogModule } from '@angular/material/dialog';
 import { FormsModule } from '@angular/forms';
 import { SnackBarSuccesComponent } from './snack-bar/snack-bar-succes/snack-bar-succes.component';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
@@ -26,6 +26,15 @@ import { RechercheComponent } from './recherche/recherche.component';
 import { QRCodeModule } from 'angular2-qrcode';
 import { DetailsPanierComponent } from './utilisateur/details-panier/details-panier.component';
 import { PariComponent } from './pari/pari.component';
+import { CompteComponent } from './utilisateur/compte/compte.component';
+import { registerLocaleData } from '@angular/common';
+import { LeafletModule } from '@asymmetrik/ngx-leaflet';
+import localeFr from '@angular/common/locales/fr';
+import { InscriptionComponent } from './utilisateur/inscription/inscription.component';
+import { MapComponent } from './map/map.component';
+import {ScrollingModule} from '@angular/cdk/scrolling';
+import { QrCodeComponent } from './qr-code/qr-code.component';
+registerLocaleData(localeFr);
 
 const routes:Routes = [
   {
@@ -51,6 +60,10 @@ const routes:Routes = [
   {
     path:"panier/:idPanier",
     component: DetailsPanierComponent
+  },
+  {
+    path:"inscription",
+    component: InscriptionComponent
   }
 ]
 
@@ -66,7 +79,11 @@ const routes:Routes = [
     DetailsCompteComponent,
     RechercheComponent,
     DetailsPanierComponent,
-    PariComponent
+    PariComponent,
+    CompteComponent,
+    InscriptionComponent,
+    MapComponent,
+    QrCodeComponent
   ],
   imports: [
     BrowserModule,
@@ -81,10 +98,14 @@ const routes:Routes = [
     MatTableModule,
     MatPaginatorModule,
     QRCodeModule,
+    LeafletModule,
+    ScrollingModule,
     MatCarouselModule.forRoot(),
     RouterModule.forRoot(routes)
   ],
-  providers: [],
+  providers: [
+    {provide: LOCALE_ID, useValue: 'fr-FR'}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

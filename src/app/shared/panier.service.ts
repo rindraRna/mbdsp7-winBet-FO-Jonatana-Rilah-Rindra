@@ -8,8 +8,8 @@ import { Panier } from '../model/panier.model';
 })
 export class PanierService {
   produits = [];
-  miseTotalValeur: number = 0;
-  gainPotentielValeur: number = 0;
+  miseTotalValeur: number;
+  gainPotentielValeur: number;
   uri = "https://nodejsapitpt.herokuapp.com/api/panier";
 
   constructor(

@@ -86,8 +86,8 @@
                     </li>
                     <li>
                         <a (click)="login()"> <i class="menu-icon fa fa-sign-in"></i>Se connecter</a>
-                        <a href="widgets.html"> <i class="menu-icon fa fa-pencil-square-o"></i>Inscription</a>
-                        <a *ngIf="nomUtilisateur !== 'nonConnecte'" (click)="deconnexion()"> <i class="menu-icon fa fa-power-off"></i>Déconnexion</a>
+                        <a routerLink="/inscription"> <i class="menu-icon fa fa-pencil-square-o"></i>Inscription</a>
+                        <a *ngIf="nomUtilisateur !== null" (click)="deconnexion()"> <i class="menu-icon fa fa-power-off"></i>Déconnexion</a>
                     </li>
                 </ul>
             </div><!-- /.navbar-collapse -->
@@ -117,7 +117,7 @@
                         </div>
                     </div>
 
-                    <div routerLink="/compte/{{ idUtilisateur }}" *ngIf="nomUtilisateur !== 'nonConnecte'" class="user-area dropdown float-right nomUser">
+                    <div routerLink="/compte/{{ idUtilisateur }}" *ngIf="nomUtilisateur !== null" class="user-area dropdown float-right nomUser">
                         {{nomUtilisateur}}
                     </div>
 

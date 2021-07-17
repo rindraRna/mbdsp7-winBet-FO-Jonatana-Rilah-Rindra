@@ -6,6 +6,9 @@ import {MatTableDataSource} from '@angular/material/table';
 import { Panier } from 'src/app/model/panier.model';
 import { PanierService } from 'src/app/shared/panier.service';
 import * as $ from 'jquery';
+import { PariPanierService } from 'src/app/shared/pari-panier.service';
+import { MatDialog } from '@angular/material/dialog';
+import { QrCodeComponent } from 'src/app/qr-code/qr-code.component';
 
 @Component({
   selector: 'app-details-compte',
@@ -14,9 +17,6 @@ import * as $ from 'jquery';
 })
 export class DetailsCompteComponent implements OnInit {
   idUtilisateur = sessionStorage.getItem('idUserConnecte');
-  nom = "";
-  email = "";
-  solde = 0;
   displayedColumns: string[] = ['qrCode', 'date', 'mise', 'gainPotentiel', 'modifier'];
   dataSource = new MatTableDataSource<Panier>();
   @ViewChild(MatSort) sort: MatSort;
@@ -25,8 +25,8 @@ export class DetailsCompteComponent implements OnInit {
   // tailleQrCode = 50;
 
   constructor(
-    private compteService: CompteService,
-    private panierService: PanierService
+    private panierService: PanierService,
+    private dialog: MatDialog
   ) { }
 
   ngAfterViewInit(): void {
@@ -36,8 +36,19 @@ export class DetailsCompteComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.detailsCompte();
     this.getPanierByIdCompte();
+  }
+
+  afficherQrCode(idPanier){
+    const dialogRef = this.dialog.open(QrCodeComponent, {
+      data: {
+        'idPanier': idPanier
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
   }
 
   getPanierByIdCompte(){
@@ -47,15 +58,6 @@ export class DetailsCompteComponent implements OnInit {
       this.dataSource.data = paniers as Panier[]; 
       this.resourcesLoaded = false;  
     });
-  }
-
-  detailsCompte(){
-    this.compteService.getCompteById(this.idUtilisateur)
-    .subscribe(compte => {
-      this.nom = compte.nomUtilisateur;
-      this.email = compte.email;
-      this.solde = compte.solde;
-    })
   }
 
 //   qrCodehover(){

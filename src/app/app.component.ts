@@ -16,8 +16,8 @@ export class AppComponent implements OnInit{
   championnats: Championnat[];
   recherche = "";
   title = 'FO';
-  nomUtilisateur = "nonConnecte";
-  idUtilisateur = sessionStorage.getItem('idUserConnecte');
+  nomUtilisateur = null;
+  idUtilisateur = ""
 
   constructor(
     private championnatService: ChampionnatService,
@@ -48,7 +48,7 @@ export class AppComponent implements OnInit{
   }
 
   deconnexion(){
-    sessionStorage.setItem('nomUser', 'nonConnecte');
+    sessionStorage.removeItem('nomUser');
     sessionStorage.removeItem('token');
     sessionStorage.removeItem('idUserConnecte');
     sessionStorage.removeItem('idPanier');

@@ -27,3 +27,7 @@ th{
 #qrCode{
     width: 100px;
 }
+
+.textDroite{
+    text-align: right;
+}

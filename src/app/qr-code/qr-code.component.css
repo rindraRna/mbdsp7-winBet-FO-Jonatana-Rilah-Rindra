@@ -1,0 +1,35 @@
+.centreText{
+    text-align: center;
+}
+
+.jaune{
+    color: #FBBD00;
+}
+
+.btnPari2{
+    background-color: #FBBD00;
+    color: #3C3C3C;
+    font-weight: bold;
+}
+
+.btnRna{
+    background-color: #3C3C3C;
+    color: white;
+    font-weight: bold;
+}
+
+.align-center{
+    margin-left: 43%;
+}
+
+.loader ::ng-deep .mat-progress-spinner circle, .mat-spinner circle {
+    stroke: #FBBD00;
+}
+
+.espacement{
+    margin-left: 17px;
+}
+
+.note{
+    font-size: 12px;
+}

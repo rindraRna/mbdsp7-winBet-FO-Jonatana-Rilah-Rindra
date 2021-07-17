@@ -17,6 +17,17 @@ export class CompteService {
     return this.http.get<Compte>(this.uri+"/"+id);
   }
 
+  inscription(email, nomUtilisateur, motDePasse):Observable<any> {
+    return this.http.post(
+      this.uri+"/inscription", 
+      { 
+        email: email,
+        nomUtilisateur: nomUtilisateur,
+        motDePasse: motDePasse,
+        solde: 7000
+      });
+  }
+
   login(email, motDePasse):Observable<any> {
     return this.http.post(
       this.uri+"/login", 
