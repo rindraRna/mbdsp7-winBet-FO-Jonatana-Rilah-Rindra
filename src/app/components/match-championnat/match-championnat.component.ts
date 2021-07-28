@@ -1,9 +1,9 @@
 import { HostListener, OnDestroy } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Match_paris } from '../model/match_paris.model';
-import { ChampionnatService } from '../shared/championnat.service';
-import { MatchPariService } from '../shared/match-pari.service';
+import { Match_paris } from '../../model/match_paris.model';
+import { ChampionnatService } from '../../shared/championnat.service';
+import { MatchPariService } from '../../shared/match-pari.service';
 
 @Component({
   selector: 'app-match-championnat',
@@ -15,7 +15,7 @@ export class MatchChampionnatComponent implements OnInit{
   nomChampionnat = ""
   matchs: Match_paris[];
   // Array of images
-  slides = [{'image': '../assets/images/carousel/img1.jpg'}, {'image': '../assets/images/carousel/img2.jpg'},{'image': '../assets/images/carousel/img1.jpg'}];
+  slides = [{'image': '../assets/images/carousel/img1.jpg'}, {'image': '../assets/images/carousel/img2.jpg'},{'image': '../assets/images/carousel/img3.jpg'}];
   resourcesLoaded = true;
 
   constructor(

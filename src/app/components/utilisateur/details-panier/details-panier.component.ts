@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { PariPanier } from 'src/app/model/pari_panier.model';
-import { QrCodeComponent } from 'src/app/qr-code/qr-code.component';
+import { QrCodeComponent } from 'src/app/components/qr-code/qr-code.component';
 import { CompteService } from 'src/app/shared/compte.service';
 import { MatchPariService } from 'src/app/shared/match-pari.service';
 import { PanierService } from 'src/app/shared/panier.service';

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { CompteService } from 'src/app/shared/compte.service';
-import { SnackBarLoginSuccesComponent } from 'src/app/snack-bar/snack-bar-login-succes/snack-bar-login-succes.component';
+import { SnackBarLoginSuccesComponent } from 'src/app/components/snack-bar/snack-bar-login-succes/snack-bar-login-succes.component';
 
 @Component({
   selector: 'app-inscription',
@@ -16,7 +16,7 @@ export class InscriptionComponent implements OnInit {
   message = ""
   resourcesLoaded = false
   // Array of images
-  slides = [{'image': '../assets/images/carousel/img1.jpg'}, {'image': '../assets/images/carousel/img2.jpg'},{'image': '../assets/images/carousel/img1.jpg'}];
+  slides = [{'image': '../assets/images/carousel/img1.jpg'}, {'image': '../assets/images/carousel/img2.jpg'},{'image': '../assets/images/carousel/img3.jpg'}];
   
   constructor(
     private compteService: CompteService,

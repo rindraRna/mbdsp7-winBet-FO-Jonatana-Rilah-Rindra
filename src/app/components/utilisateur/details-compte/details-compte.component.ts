@@ -8,7 +8,7 @@ import { PanierService } from 'src/app/shared/panier.service';
 import * as $ from 'jquery';
 import { PariPanierService } from 'src/app/shared/pari-panier.service';
 import { MatDialog } from '@angular/material/dialog';
-import { QrCodeComponent } from 'src/app/qr-code/qr-code.component';
+import { QrCodeComponent } from 'src/app/components/qr-code/qr-code.component';
 
 @Component({
   selector: 'app-details-compte',

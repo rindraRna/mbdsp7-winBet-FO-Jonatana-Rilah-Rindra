@@ -5,7 +5,7 @@ import * as $ from 'jquery';
 import { Championnat } from './model/championnat.model';
 import { ChampionnatService } from './shared/championnat.service';
 import { MatchPariService } from './shared/match-pari.service';
-import { LoginComponent } from './utilisateur/login/login.component';
+import { LoginComponent } from './components/utilisateur/login/login.component';
 
 @Component({
   selector: 'app-root',

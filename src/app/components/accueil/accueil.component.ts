@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Match_paris } from '../model/match_paris.model';
-import { MatchPariService } from '../shared/match-pari.service';
+import { Match_paris } from '../../model/match_paris.model';
+import { MatchPariService } from '../../shared/match-pari.service';
 
 @Component({
   selector: 'app-accueil',

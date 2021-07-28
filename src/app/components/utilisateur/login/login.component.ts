@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { Panier } from 'src/app/model/panier.model';
 import { CompteService } from 'src/app/shared/compte.service';
 import { PanierService } from 'src/app/shared/panier.service';
-import { SnackBarLoginSuccesComponent } from 'src/app/snack-bar/snack-bar-login-succes/snack-bar-login-succes.component';
+import { SnackBarLoginSuccesComponent } from 'src/app/components/snack-bar/snack-bar-login-succes/snack-bar-login-succes.component';
 
 @Component({
   selector: 'app-login',
