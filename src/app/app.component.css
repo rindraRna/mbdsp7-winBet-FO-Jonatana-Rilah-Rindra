@@ -27,3 +27,7 @@
 .espacement{
     margin-right: 20px;
 }
+
+.clickable{
+    cursor: pointer;
+}

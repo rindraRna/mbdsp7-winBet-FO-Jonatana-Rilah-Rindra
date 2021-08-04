@@ -79,13 +79,13 @@
                         <a routerLink="/"> <i class="menu-icon fa fa-angle-double-right"></i>Tous</a>
                     </li>
                     <li>
-                        <a *ngFor="let championnat of championnats" (click)="macthsChampionnat(championnat._id)"> <i class="menu-icon fa fa-angle-double-right"></i>{{ championnat.nom }}</a>
+                        <a class="clickable" *ngFor="let championnat of championnats" (click)="macthsChampionnat(championnat._id)"> <i class="menu-icon fa fa-angle-double-right"></i>{{ championnat.nom }}</a>
                     </li>
                     <li class="activeRna">
                         <a><i class="menu-icon fa fa-user"></i><span class="activeTxtRna">Compte</span></a>
                     </li>
                     <li>
-                        <a (click)="login()"> <i class="menu-icon fa fa-sign-in"></i>Se connecter</a>
+                        <a  class="clickable" (click)="login()"> <i class="menu-icon fa fa-sign-in"></i>Se connecter</a>
                         <a routerLink="/inscription"> <i class="menu-icon fa fa-pencil-square-o"></i>Inscription</a>
                         <a *ngIf="nomUtilisateur !== null" (click)="deconnexion()"> <i class="menu-icon fa fa-power-off"></i>Déconnexion</a>
                     </li>
@@ -118,7 +118,7 @@
                     </div>
 
                     <div routerLink="/compte/{{ idUtilisateur }}" *ngIf="nomUtilisateur !== null" class="user-area dropdown float-right nomUser">
-                        {{nomUtilisateur}}
+                        <span class="clickable">{{nomUtilisateur}}</span>
                     </div>
 
                 </div>
