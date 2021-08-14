@@ -8,38 +8,17 @@
                 <strong class="card-title">Liste de vos paris</strong>
             </div>
             <div class="card-body">
-              <button (click)="getPanierByIdCompte()" class="btn btn-outline-secondary espacement"><i class="fa fa-list-ul"></i>&nbsp; Réinitialiser le tableau</button>
-              <br/>  
+              <!-- <button (click)="getPanierByIdCompte()" class="btn btn-outline-secondary espacement"><i class="fa fa-list-ul"></i>&nbsp; Réinitialiser le tableau</button>
+              <br/>   -->
               <div class="mat-elevation-z8 cardRna">
                   <!-- <div>
                     <form ngForm class="form-horizontal"> 
                       <div class="row form-group">
                         <div class="col col-md-3">
                           <label>Date</label>
-                          <input (change)="rechercheMulticritere()" [(ngModel)]="date" name="date" class="form-control" type="datetime-local" placeholder="Date">
+                          <input  [(ngModel)]="date" name="date" class="form-control" type="datetime-local" placeholder="Date">
                         </div>
-                        <div class="col col-md-3">
-                          <label>Equipe</label>
-                          <input (keyup)="rechercheMulticritere()" [(ngModel)]="equipe" name="equipe" class="form-control" type="text" placeholder="Equipe"/>
-                        </div>
-                        <div class="col col-md-3">
-                          <label>Championnat</label>
-                          <select (change)="rechercheMulticritere()" [(ngModel)]="championnat" name="championnat" class="form-control">
-                            <option value="Tous">Tous</option>
-                            <ng-container *ngFor="let championnat of championnats">
-                              <option value="{{championnat.nom}}">{{championnat.nom}}</option>
-                            </ng-container>
-                          </select>
-                        </div>
-                        <div class="col col-md-3">
-                          <label>Etat</label>
-                          <select (change)="rechercheMulticritere()" [(ngModel)]="etat" name="etat" class="form-control">
-                            <option value="4">Tous</option>
-                            <option value="0">Pariable</option>
-                            <option value="1">En cours</option>
-                            <option value="2">Terminé</option>
-                          </select>
-                        </div>
+                        
                       </div>
                     </form>
                   </div> -->

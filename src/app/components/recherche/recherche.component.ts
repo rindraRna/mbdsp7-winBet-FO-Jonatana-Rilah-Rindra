@@ -13,7 +13,7 @@ export class RechercheComponent implements OnInit {
   texte = this.route.snapshot.params.texte;
   matchs: Match_paris[];
   // Array of images
-  slides = [{'image': '../assets/images/carousel/img1.jpg'}, {'image': '../assets/images/carousel/img2.jpg'},{'image': '../assets/images/carousel/img1.jpg'}];
+  slides = [{'image': '../assets/images/carousel/img5.jpg'}, {'image': '../assets/images/carousel/img1.jpg'},{'image': '../assets/images/carousel/img2.jpg'}];
   resourcesLoaded = true;
   nbResultats = 0;
   

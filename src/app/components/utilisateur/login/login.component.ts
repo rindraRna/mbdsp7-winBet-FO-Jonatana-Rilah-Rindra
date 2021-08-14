@@ -16,6 +16,7 @@ export class LoginComponent implements OnInit {
   email = "rindranyainaramiandrisoa@gmail.com";
   motDePasse = "rnaMdp";
   resourcesLoaded = false;
+  message= ""
 
   constructor(
     private compteService: CompteService,
@@ -43,6 +44,9 @@ export class LoginComponent implements OnInit {
         });
         this.dialog.closeAll();
       });
+    }, err => {
+      this.message = "Erreur: "+err.error.message
+      this.resourcesLoaded = false;
     });
   }
 

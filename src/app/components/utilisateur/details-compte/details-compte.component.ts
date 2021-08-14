@@ -22,6 +22,7 @@ export class DetailsCompteComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   resourcesLoaded = true;
+  date= ""
   // tailleQrCode = 50;
 
   constructor(

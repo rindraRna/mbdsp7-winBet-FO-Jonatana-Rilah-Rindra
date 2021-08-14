@@ -28,3 +28,8 @@
 .loader ::ng-deep .mat-progress-spinner circle, .mat-spinner circle {
     stroke: #FBBD00;
 }
+
+.message{
+    text-align: center;
+    font-size: 14px;
+}

@@ -13,7 +13,7 @@ export class AccueilComponent implements OnInit {
   idChampionnat = this.route.snapshot.params.idChampionnat;
   matchs: Match_paris[];
   // Array of images
-  slides = [{'image': '../assets/images/carousel/img1.jpg'}, {'image': '../assets/images/carousel/img2.jpg'},{'image': '../assets/images/carousel/img3.jpg'}];
+  slides = [{'image': '../assets/images/carousel/img5.jpg'}, {'image': '../assets/images/carousel/img1.jpg'},{'image': '../assets/images/carousel/img2.jpg'}];
   resourcesLoaded = true;
   
   constructor(
