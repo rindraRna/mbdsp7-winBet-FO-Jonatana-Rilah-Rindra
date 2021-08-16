@@ -21,8 +21,8 @@
                     <div class="card-text">
                         <h6>{{titres[0]}}</h6>
                         <div class="row">
-                            <div *ngFor="let parisVainqueur of parisVainqueurs" class="col-md-4">
-                                <button (click)="pari($event, 0)" type="button" class="btn btn-outline-secondary btnPari">{{ parisVainqueur.valeur }}
+                            <div *ngFor="let parisVainqueur of parisVainqueurs; let index = index" class="col-md-4">
+                                <button *ngIf="index < 3" (click)="pari($event, 0)" type="button" class="btn btn-outline-secondary btnPari">{{ parisVainqueur.valeur }}
                                     <span class="badge badge-light">{{ parisVainqueur.cote }}</span>
                                 </button>
                             </div>

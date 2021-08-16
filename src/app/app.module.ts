@@ -12,9 +12,9 @@ import {MatIconModule} from '@angular/material/icon';
 import { MatCarouselModule } from '@ngmodule/material-carousel';
 import {HttpClientModule} from '@angular/common/http';
 import { MatchChampionnatComponent } from './components/match-championnat/match-championnat.component';
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { LoginComponent } from './components/utilisateur/login/login.component'
-import {MatDialogModule} from '@angular/material/dialog';
+import { MatDialogModule } from '@angular/material/dialog';
 import { FormsModule } from '@angular/forms';
 import { SnackBarSuccesComponent } from './components/snack-bar/snack-bar-succes/snack-bar-succes.component';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
