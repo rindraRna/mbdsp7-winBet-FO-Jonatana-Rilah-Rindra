@@ -8,7 +8,7 @@ import { AccueilComponent } from './components/accueil/accueil.component';
 import { DetailsMatchComponent } from './components/details-match/details-match.component';
 
 import { MatCardModule } from '@angular/material/card';
-import {MatIconModule} from '@angular/material/icon';
+import { MatIconModule } from '@angular/material/icon';
 import { MatCarouselModule } from '@ngmodule/material-carousel';
 import {HttpClientModule} from '@angular/common/http';
 import { MatchChampionnatComponent } from './components/match-championnat/match-championnat.component';
