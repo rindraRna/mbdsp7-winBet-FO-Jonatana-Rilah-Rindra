@@ -98,10 +98,10 @@ export class DetailsPanierComponent implements OnInit {
       const nbPari = pariPaniers.length;
       for(var i = 0; i < nbPari; i++){
         if(pariPaniers[i].pari.resultat == 1){
-          this.sommeGagne += pariPaniers[i].pari.gain; 
+          this.sommeGagne += Number(pariPaniers[i].pari.gain); 
         }
         if(pariPaniers[i].pari.resultat == 2){
-          this.sommePerdu += pariPaniers[i].pari.mise;
+          this.sommePerdu += Number(pariPaniers[i].pari.mise);
         }
       }
       this.resultat = "Résultat: Vous avez gagné "+this.sommeGagne.toLocaleString()+" Ar et perdu "+this.sommePerdu.toLocaleString()+" Ar";

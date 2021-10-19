@@ -8,6 +8,7 @@ import { PariPanier } from '../model/pari_panier.model';
 })
 export class PariPanierService {
   uri = "https://nodejsapitpt.herokuapp.com/api/pari_panier";
+  // uri = "http://localhost:8010/api/pari_panier";
 
   constructor(
     private http: HttpClient

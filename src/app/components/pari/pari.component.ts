@@ -23,6 +23,7 @@ export class PariComponent implements OnInit {
   @Input() gainPotentielValeur
   resourcesLoaded = false;
   dansDetails = false;
+  grise = false
 
   constructor(
     private panierService: PanierService,
@@ -138,11 +139,19 @@ export class PariComponent implements OnInit {
 
   calculGain(event, pari){
     pari.mise = +event.target.value;
-    // 2 chiffres apres virgules
-    pari.gain = this.deuxChiffresDecimal(pari.mise*pari.cote);
+    if(pari.mise <= 0) {
+      alert("Votre mise doit être supérieur à 0")
+      this.grise = true
+    }
+    else{
+      // 2 chiffres apres virgules
+      pari.gain = this.deuxChiffresDecimal(pari.mise*pari.cote);
+  
+      // maj mise total et gain potentiel
+      this.majMiseEtGain();
 
-    // maj mise total et gain potentiel
-    this.majMiseEtGain();
+      this.grise = false
+    }
   }
 
   deuxChiffresDecimal(nombre: number){

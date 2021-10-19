@@ -41,7 +41,10 @@
             </div>
         </div>
     </div>
-    <button (click)="enregistrerDansPanier()" class="btn btn-outline-secondary btnPari2">
+    <button *ngIf="!this.grise" (click)="enregistrerDansPanier()" class="btn btn-outline-secondary btnPari2">
+        Valider mon panier
+    </button>
+    <button *ngIf="this.grise" (click)="enregistrerDansPanier()" class="btn btn-outline-secondary btnPari2" disabled>
         Valider mon panier
     </button>
     <br/><br/>
